@@ -1,0 +1,1582 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dubai Construtora - Leilão Interno de Decorado</title>
+  
+  <!-- CSS 100% NATIVO EMBUTIDO - NÃO DEPENDE DE NENHUM CDN EXTERNO (SHAREPOINT CSP COMPLIANT) -->
+  <style>
+    :root {
+      --dubai-red: #e11d23;
+      --dubai-red-hover: #b91319;
+      --dubai-red-light: #fef2f2;
+      --dubai-red-border: #fecaca;
+      
+      --bg-main: #f8fafc;
+      --bg-card: #ffffff;
+      --bg-subtle: #f1f5f9;
+      --bg-input: #ffffff;
+      
+      --text-main: #0f172a;
+      --text-muted: #64748b;
+      --text-light: #94a3b8;
+      
+      --border-color: #e2e8f0;
+      --border-focus: #e11d23;
+      
+      --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+      --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+      --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 18px;
+      --radius-full: 9999px;
+      
+      --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    [data-theme="dark"] {
+      --bg-main: #090d16;
+      --bg-card: #121826;
+      --bg-subtle: #1b2438;
+      --bg-input: #172033;
+      
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --text-light: #64748b;
+      
+      --border-color: #243049;
+      --dubai-red-light: #2d1215;
+      --dubai-red-border: #4d181c;
+      
+      --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.5);
+      --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4);
+      --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      font-family: var(--font-family);
+      background-color: var(--bg-main);
+      color: var(--text-main);
+      line-height: 1.5;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      transition: background-color 0.2s, color 0.2s;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    button, input, select, textarea { font-family: inherit; }
+
+    /* Top notice banner */
+    .top-banner {
+      background-color: var(--dubai-red);
+      color: #ffffff;
+      font-size: 11px;
+      font-weight: 600;
+      padding: 6px 16px;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    /* Header */
+    .app-header {
+      background: var(--bg-card);
+      border-bottom: 1px solid var(--border-color);
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .header-container {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 0 16px;
+      height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      cursor: pointer;
+    }
+
+    .brand-logo-cube {
+      width: 40px;
+      height: 40px;
+      flex-shrink: 0;
+    }
+
+    .brand-titles {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .brand-name {
+      font-size: 24px;
+      font-weight: 900;
+      letter-spacing: -0.04em;
+      line-height: 1;
+      text-transform: lowercase;
+    }
+
+    .brand-name span {
+      color: var(--dubai-red);
+    }
+
+    .brand-tag {
+      font-size: 8.5px;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      font-weight: 800;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 8px 14px;
+      border-radius: var(--radius-md);
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      border: 1px solid transparent;
+      transition: all 0.15s ease;
+      user-select: none;
+    }
+
+    .btn:active {
+      transform: scale(0.97);
+    }
+
+    .btn-outline {
+      background: var(--bg-card);
+      border-color: var(--border-color);
+      color: var(--text-main);
+    }
+
+    .btn-outline:hover {
+      background: var(--bg-subtle);
+    }
+
+    .btn-primary {
+      background: var(--dubai-red);
+      color: #ffffff;
+      box-shadow: 0 2px 4px rgba(225, 29, 35, 0.25);
+    }
+
+    .btn-primary:hover {
+      background: var(--dubai-red-hover);
+    }
+
+    .btn-dark {
+      background: #0f172a;
+      color: #ffffff;
+    }
+
+    [data-theme="dark"] .btn-dark {
+      background: #ffffff;
+      color: #0f172a;
+    }
+
+    .btn-success {
+      background: #059669;
+      color: #ffffff;
+    }
+
+    .btn-success:hover {
+      background: #047857;
+    }
+
+    .btn-icon-only {
+      padding: 8px;
+      border-radius: var(--radius-md);
+      width: 38px;
+      height: 38px;
+    }
+
+    /* Admin Toolbar */
+    .admin-toolbar {
+      background: #0b1120;
+      color: #ffffff;
+      border-top: 1px solid #1e293b;
+      padding: 8px 16px;
+      font-size: 11px;
+    }
+
+    .admin-toolbar-content {
+      max-width: 1240px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .admin-status {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-weight: 700;
+    }
+
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: var(--radius-full);
+      background: #10b981;
+      box-shadow: 0 0 6px #10b981;
+    }
+
+    /* Main Container */
+    .main-content {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 24px 16px;
+      flex: 1;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+    }
+
+    .arena-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 20px;
+      box-shadow: var(--shadow-sm);
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+
+    @media (min-width: 860px) {
+      .arena-card {
+        grid-template-columns: 1.1fr 1fr;
+        padding: 28px;
+      }
+    }
+
+    .arena-media {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .arena-image-wrapper {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      background: var(--bg-subtle);
+      border: 1px solid var(--border-color);
+    }
+
+    .arena-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .arena-badge-status {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background: var(--dubai-red);
+      color: #fff;
+      font-size: 10px;
+      font-weight: 900;
+      padding: 4px 10px;
+      border-radius: var(--radius-full);
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      box-shadow: var(--shadow-md);
+    }
+
+    .arena-code-pill {
+      position: absolute;
+      bottom: 10px;
+      left: 10px;
+      background: rgba(0,0,0,0.75);
+      color: #fff;
+      font-size: 11px;
+      font-family: monospace;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: var(--radius-sm);
+    }
+
+    .arena-times {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      background: var(--bg-subtle);
+      border: 1px solid var(--border-color);
+      padding: 8px 12px;
+      border-radius: var(--radius-md);
+      font-size: 11px;
+    }
+
+    .arena-times-label {
+      font-size: 9px;
+      text-transform: uppercase;
+      font-weight: 800;
+      color: var(--text-light);
+      display: block;
+    }
+
+    .arena-details {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .arena-header-tag {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .tag-category {
+      font-size: 10px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--dubai-red);
+    }
+
+    .leader-badge {
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: var(--radius-sm);
+      background: var(--bg-subtle);
+      color: var(--text-muted);
+      border: 1px solid var(--border-color);
+    }
+
+    .arena-title {
+      font-size: 24px;
+      font-weight: 900;
+      line-height: 1.2;
+      color: var(--text-main);
+      margin-top: 4px;
+    }
+
+    .arena-desc {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-top: 6px;
+    }
+
+    .kpi-bid-box {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      padding: 14px;
+      border-radius: var(--radius-md);
+      background: var(--bg-subtle);
+      border: 1px solid var(--border-color);
+    }
+
+    .kpi-title {
+      font-size: 10px;
+      text-transform: uppercase;
+      font-weight: 800;
+      color: var(--text-light);
+    }
+
+    .kpi-price {
+      font-size: 26px;
+      font-weight: 900;
+      font-family: monospace;
+      color: var(--dubai-red);
+      line-height: 1.1;
+      margin-top: 2px;
+    }
+
+    .kpi-timer {
+      font-size: 18px;
+      font-weight: 900;
+      font-family: monospace;
+      color: var(--text-main);
+      margin-top: 4px;
+    }
+
+    /* Quick Bids */
+    .quick-bids-label {
+      font-size: 11px;
+      font-weight: 800;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+    }
+
+    .quick-bids-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 6px;
+    }
+
+    .btn-quick-bid {
+      background: var(--bg-subtle);
+      border: 1px solid var(--border-color);
+      color: var(--text-main);
+      padding: 6px 4px;
+      border-radius: var(--radius-sm);
+      font-size: 11px;
+      font-weight: 800;
+      cursor: pointer;
+      text-align: center;
+      transition: all 0.15s;
+    }
+
+    .btn-quick-bid:hover {
+      background: var(--dubai-red);
+      color: #ffffff;
+      border-color: var(--dubai-red);
+    }
+
+    .custom-bid-row {
+      display: flex;
+      gap: 8px;
+      margin-top: 8px;
+    }
+
+    .input-bid {
+      flex: 1;
+      padding: 10px 14px;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-color);
+      background: var(--bg-input);
+      color: var(--text-main);
+      font-size: 14px;
+      font-weight: 700;
+      outline: none;
+    }
+
+    .input-bid:focus {
+      border-color: var(--border-focus);
+    }
+
+    .bid-history-box {
+      border-top: 1px solid var(--border-color);
+      padding-top: 10px;
+    }
+
+    .bid-history-title {
+      font-size: 10px;
+      font-weight: 800;
+      text-transform: uppercase;
+      color: var(--text-light);
+      margin-bottom: 6px;
+    }
+
+    .bid-history-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 4px 6px;
+      font-size: 11px;
+      border-radius: var(--radius-sm);
+    }
+
+    .bid-history-item.leader {
+      background: var(--dubai-red-light);
+      color: var(--dubai-red);
+      font-weight: 700;
+    }
+
+    .catalog-header {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .catalog-title {
+      font-size: 18px;
+      font-weight: 900;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .catalog-count-pill {
+      font-size: 11px;
+      font-weight: 700;
+      padding: 2px 8px;
+      background: var(--bg-subtle);
+      border-radius: var(--radius-full);
+      color: var(--text-muted);
+    }
+
+    .catalog-filters {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .input-search {
+      padding: 6px 12px;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-color);
+      background: var(--bg-card);
+      color: var(--text-main);
+      font-size: 12px;
+      outline: none;
+      width: 220px;
+    }
+
+    .input-search:focus {
+      border-color: var(--border-focus);
+    }
+
+    .catalog-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+
+    @media (min-width: 580px) {
+      .catalog-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (min-width: 960px) {
+      .catalog-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    .lot-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 14px;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 12px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .lot-card:hover {
+      border-color: var(--dubai-red);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .lot-card.active-selected {
+      border-color: var(--dubai-red);
+      outline: 2px solid var(--dubai-red);
+    }
+
+    .lot-card-media {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 10;
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+      background: var(--bg-subtle);
+    }
+
+    .lot-card-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .lot-card-header {
+      position: absolute;
+      top: 6px;
+      left: 6px;
+      display: flex;
+      gap: 4px;
+    }
+
+    .lot-card-badge {
+      background: var(--dubai-red);
+      color: #fff;
+      font-size: 9px;
+      font-weight: 800;
+      padding: 2px 6px;
+      border-radius: 4px;
+      text-transform: uppercase;
+    }
+
+    .lot-card-code {
+      background: rgba(0,0,0,0.65);
+      color: #fff;
+      font-size: 9px;
+      font-weight: 700;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-family: monospace;
+    }
+
+    .lot-card-title {
+      font-size: 13px;
+      font-weight: 800;
+      line-height: 1.3;
+      margin-top: 4px;
+      display: -webkit-box;
+      -webkit-line-clamp: 1;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .lot-card-desc {
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-top: 2px;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .lot-card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1px solid var(--border-color);
+      padding-top: 8px;
+    }
+
+    .lot-card-price-label {
+      font-size: 9px;
+      text-transform: uppercase;
+      color: var(--text-light);
+      font-weight: 700;
+    }
+
+    .lot-card-price {
+      font-size: 14px;
+      font-weight: 900;
+      color: var(--dubai-red);
+      font-family: monospace;
+    }
+
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.65);
+      backdrop-filter: blur(3px);
+      z-index: 100;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+    }
+
+    .modal-overlay.open {
+      display: flex;
+    }
+
+    .modal-window {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      width: 100%;
+      max-width: 520px;
+      max-height: 90vh;
+      overflow-y: auto;
+      padding: 22px;
+      box-shadow: var(--shadow-lg);
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      animation: modalFadeIn 0.2s ease-out;
+    }
+
+    .modal-window.wide {
+      max-width: 980px;
+    }
+
+    @keyframes modalFadeIn {
+      from { opacity: 0; transform: scale(0.96); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    .modal-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 12px;
+    }
+
+    .modal-title {
+      font-size: 16px;
+      font-weight: 900;
+      color: var(--text-main);
+    }
+
+    .modal-close-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      cursor: pointer;
+      font-size: 18px;
+      padding: 4px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .form-label {
+      font-size: 11px;
+      font-weight: 800;
+      color: var(--text-main);
+    }
+
+    .form-input {
+      padding: 8px 12px;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-color);
+      background: var(--bg-input);
+      color: var(--text-main);
+      font-size: 12px;
+      outline: none;
+    }
+
+    .form-input:focus {
+      border-color: var(--border-focus);
+    }
+
+    /* Dashboard Table (Strict 6 Columns) */
+    .dashboard-kpis {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px;
+    }
+
+    @media (min-width: 640px) {
+      .dashboard-kpis {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+
+    .dash-kpi-card {
+      background: var(--bg-subtle);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-sm);
+      padding: 10px;
+    }
+
+    .dash-table-wrapper {
+      overflow-x: auto;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      max-height: 400px;
+    }
+
+    .admin-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 11px;
+      text-align: left;
+    }
+
+    .admin-table th {
+      background: var(--dubai-red);
+      color: #ffffff;
+      padding: 10px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .admin-table td {
+      padding: 8px 10px;
+      border-bottom: 1px solid var(--border-color);
+      color: var(--text-main);
+    }
+
+    .admin-table tr:nth-child(even) td {
+      background: var(--bg-subtle);
+    }
+
+    /* Toast Notification */
+    .toast-container {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 200;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      pointer-events: none;
+    }
+
+    .toast-msg {
+      background: #0f172a;
+      color: #ffffff;
+      padding: 10px 16px;
+      border-radius: var(--radius-md);
+      font-size: 12px;
+      font-weight: 700;
+      box-shadow: var(--shadow-lg);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      pointer-events: auto;
+      animation: toastIn 0.2s ease-out;
+    }
+
+    .toast-msg.success { background: #059669; }
+    .toast-msg.error { background: #dc2626; }
+
+    @keyframes toastIn {
+      from { transform: translateY(10px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    /* Footer */
+    .app-footer {
+      background: var(--bg-card);
+      border-top: 1px solid var(--border-color);
+      padding: 18px 16px;
+      font-size: 11px;
+      color: var(--text-muted);
+      text-align: center;
+      margin-top: auto;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- BARRA DE AVISOS -->
+  <div class="top-banner">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+    <span>Exclusivo para Colaboradores Dubai • Itens do Apartamento Decorado • Retirada no local indicado</span>
+  </div>
+
+  <!-- TOPO CORPORATIVO -->
+  <header class="app-header">
+    <div class="header-container">
+      
+      <!-- LOGO DUBAI COM CUBO GEOMÉTRICO NATIVO (SEM SVG EXTERNO) -->
+      <div class="brand" onclick="window.scrollTo({top:0, behavior:'smooth'})">
+        <svg class="brand-logo-cube" viewBox="0 0 100 115" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M50 0L95 26V78L50 104L5 78V26L50 0Z" fill="#C5161D"/>
+          <path d="M50 0L95 26L50 52L5 26L50 0Z" fill="#E11D23"/>
+          <path d="M50 52L95 26V78L50 104V52Z" fill="#991B1B"/>
+          <path d="M50 52L5 26V78L50 104V52Z" fill="#B91C1C"/>
+          <path d="M50 24L76 39V69L50 84L24 69V39L50 24Z" fill="#7F1D1D"/>
+          <path d="M50 24L76 39L50 54L24 39L50 24Z" fill="#B91C1C"/>
+          <path d="M50 54L76 39V69L50 84V54Z" fill="#590A0A"/>
+        </svg>
+        <div class="brand-titles">
+          <div class="brand-name">dubai<span>.</span></div>
+          <span class="brand-tag">Incorporação e Construção</span>
+        </div>
+      </div>
+
+      <!-- BOTÕES CABEÇALHO -->
+      <div class="header-actions">
+        <button onclick="openRulesModal()" class="btn btn-outline">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+          <span>Regras</span>
+        </button>
+
+        <button onclick="toggleAppTheme()" class="btn btn-outline btn-icon-only" title="Alternar tema">
+          <svg id="themeIconSvg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+        </button>
+
+        <button id="adminLoginBtn" onclick="openAdminAuth()" class="btn btn-dark">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+          <span id="adminLoginBtnLabel">Painel Admin</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- TOOLBAR DO ADMIN (PDV01) -->
+    <div id="adminToolbar" class="admin-toolbar" style="display: none;">
+      <div class="admin-toolbar-content">
+        <div class="admin-status">
+          <span class="status-dot"></span>
+          <span>Sessão Ativa: Administrador (PDV01)</span>
+        </div>
+        <div style="display: flex; gap: 8px; align-items: center;">
+          <button onclick="openDashboardModal()" class="btn btn-primary" style="padding: 4px 10px; font-size: 11px;">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M3 3h8v8H3zm0 10h8v8H3zm10-10h8v8h-8zm0 10h8v8h-8z"/></svg>
+            <span>Dashboard Vencedores</span>
+          </button>
+          <button onclick="logoutAdmin()" class="btn btn-outline" style="padding: 4px 8px; font-size: 10px; color: #f87171; border-color: #475569;">
+            Sair
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="main-content">
+    
+    <!-- ARENA EM DESTAQUE (SPOTLIGHT) -->
+    <section class="arena-card">
+      <div class="arena-media">
+        <div class="arena-image-wrapper">
+          <img id="spotlightImg" class="arena-image" src="https://images.unsplash.com/photo-1617806118233-18e1de247200?auto=format&fit=crop&w=1200&q=80" alt="Lote do decorado" onerror="this.src='https://images.unsplash.com/photo-1617806118233-18e1de247200?auto=format&fit=crop&w=1200&q=80'">
+          <div class="arena-badge-status">AO VIVO</div>
+          <div id="spotlightCode" class="arena-code-pill">LOTE #01</div>
+        </div>
+
+        <div class="arena-times">
+          <div>
+            <span class="arena-times-label">Abertura</span>
+            <span id="spotlightStartTime">--/-- --:--</span>
+          </div>
+          <div style="text-align: right;">
+            <span class="arena-times-label">Encerramento</span>
+            <span id="spotlightEndTime" style="color: var(--dubai-red); font-weight: 800;">23/09/2026 15:00</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="arena-details">
+        <div>
+          <div class="arena-header-tag">
+            <span id="spotlightCategory" class="tag-category">Decoração & Tapetes</span>
+            <span id="spotlightLeaderDept" class="leader-badge">Sem lances</span>
+          </div>
+          <h1 id="spotlightTitle" class="arena-title">Jogo americano</h1>
+          <p id="spotlightDesc" class="arena-desc">Jogo americano de mesa em fibra natural com acabamento reforçado.</p>
+        </div>
+
+        <div class="kpi-bid-box">
+          <div>
+            <span class="kpi-title">Maior Lance Atual</span>
+            <div id="spotlightCurrentPrice" class="kpi-price">R$ 70,00</div>
+            <span style="font-size: 10px; color: var(--text-light);"><strong id="spotlightBidsCount">0</strong> lances registrados</span>
+          </div>
+          <div style="border-left: 1px solid var(--border-color); padding-left: 12px;">
+            <span class="kpi-title">Encerramento Em</span>
+            <div id="spotlightCountdown" class="kpi-timer">--:--:--</div>
+            <span style="font-size: 9px; color: var(--text-light);">Anti-sniping: +60s nos lances finais</span>
+          </div>
+        </div>
+
+        <!-- SELEÇÃO RÁPIDA DE LANCES (+10, +20, +50, +100) -->
+        <div>
+          <div class="quick-bids-label">Acréscimos Rápidos (a partir de R$ 10,00):</div>
+          <div class="quick-bids-grid">
+            <button onclick="triggerQuickAdd(10)" class="btn-quick-bid">+ R$ 10</button>
+            <button onclick="triggerQuickAdd(20)" class="btn-quick-bid">+ R$ 20</button>
+            <button onclick="triggerQuickAdd(50)" class="btn-quick-bid">+ R$ 50</button>
+            <button onclick="triggerQuickAdd(100)" class="btn-quick-bid">+ R$ 100</button>
+          </div>
+
+          <div class="custom-bid-row">
+            <input type="number" id="customBidInput" min="10" step="1" placeholder="Ex: 80" class="input-bid">
+            <button onclick="submitCustomBid()" class="btn btn-primary" style="padding: 10px 20px;">Dar Lance</button>
+          </div>
+          <span id="minBidNotice" style="font-size: 10px; color: var(--text-light); margin-top: 4px; display: block;">Lance mínimo permitido: R$ 10,00 acima do líder</span>
+        </div>
+
+        <div class="bid-history-box">
+          <div class="bid-history-title">Histórico Recente de Disputa</div>
+          <div id="bidHistoryList">
+            <div style="font-size: 11px; color: var(--text-light); font-style: italic;">Nenhum lance no momento.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CATÁLOGO DOS 21 ITENS -->
+    <section>
+      <div class="catalog-header">
+        <div class="catalog-title">
+          <span>Catálogo do Decorado</span>
+          <span id="catalogCountPill" class="catalog-count-pill">21 itens</span>
+        </div>
+        <div class="catalog-filters">
+          <input type="text" id="catalogSearch" oninput="renderCatalog()" placeholder="Buscar item ou código..." class="input-search">
+        </div>
+      </div>
+
+      <div id="catalogGrid" class="catalog-grid"></div>
+    </section>
+
+  </main>
+
+  <footer class="app-footer">
+    <strong>Dubai Construtora e Incorporadora</strong> • Leilão Interno de Decorado • SharePoint Native Edition
+  </footer>
+
+  <!-- MODAL: CONFIRMAR DADOS DO LICITANTE -->
+  <div id="bidderModal" class="modal-overlay">
+    <div class="modal-window">
+      <div class="modal-header">
+        <div>
+          <div class="modal-title">Confirmar Lance</div>
+          <span id="bidModalSubtitle" style="font-size: 11px; color: var(--dubai-red); font-weight: 700;">Lote: Jogo americano</span>
+        </div>
+        <button onclick="closeModal('bidderModal')" class="modal-close-btn">&times;</button>
+      </div>
+
+      <div style="background: var(--bg-subtle); padding: 12px; border-radius: var(--radius-md); border: 1px solid var(--border-color);">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+          <span style="font-size: 11px; font-weight: 800; color: var(--text-muted);">VALOR DO SEU LANCE:</span>
+          <span id="bidModalDisplayPrice" style="font-size: 20px; font-weight: 900; color: var(--dubai-red); font-family: monospace;">R$ 80,00</span>
+        </div>
+      </div>
+
+      <form onsubmit="handleConfirmBidForm(event)" style="display: flex; flex-direction: column; gap: 12px;">
+        <div class="form-group">
+          <label class="form-label">Nome Completo *</label>
+          <input type="text" id="bidderName" required placeholder="Ex: Carlos Silva" class="form-input">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Área / Obra *</label>
+          <input type="text" id="bidderArea" required placeholder="Ex: Obra Reserva Dubai / Engenharia" class="form-input">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Telefone de Contato (WhatsApp) *</label>
+          <input type="tel" id="bidderPhone" required placeholder="(00) 00000-0000" maxlength="15" oninput="maskPhone(this)" class="form-input">
+        </div>
+
+        <div style="display: flex; justify-content: flex-end; gap: 8px; margin-top: 8px;">
+          <button type="button" onclick="closeModal('bidderModal')" class="btn btn-outline">Cancelar</button>
+          <button type="submit" class="btn btn-primary">Confirmar e Gravar Lance</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- MODAL: REGRAS DO LEILÃO -->
+  <div id="rulesModal" class="modal-overlay">
+    <div class="modal-window">
+      <div class="modal-header">
+        <div class="modal-title">Regulamento do Leilão</div>
+        <button onclick="closeModal('rulesModal')" class="modal-close-btn">&times;</button>
+      </div>
+      <div style="font-size: 12px; line-height: 1.6; color: var(--text-muted); display: flex; flex-direction: column; gap: 10px;">
+        <p><strong>1. Participação:</strong> Exclusiva para colaboradores e prestadores da Dubai Construtora.</p>
+        <p><strong>2. Condição dos Itens:</strong> Todos os produtos pertenceram ao antigo apartamento decorado e são entregues nas condições em que se encontram.</p>
+        <p><strong>3. Lances:</strong> Os incrementos são livres com valor mínimo de superação a partir de R$ 10,00 sobre a maior oferta.</p>
+        <p><strong>4. Encerramento:</strong> Disputas nos momentos finais acrescentam +60 segundos para oportunidades justas de contra-lance.</p>
+        <p><strong>5. Retirada:</strong> Ocorrerá no local indicado pela administração após homologação e quitação.</p>
+      </div>
+      <div style="text-align: right; margin-top: 8px;">
+        <button onclick="closeModal('rulesModal')" class="btn btn-primary">Entendido</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: AVISO INICIAL -->
+  <div id="initialNoticeModal" class="modal-overlay">
+    <div class="modal-window" style="text-align: center; max-width: 440px;">
+      <div style="width: 50px; height: 50px; border-radius: var(--radius-full); background: var(--dubai-red-light); color: var(--dubai-red); display: flex; align-items: center; justify-content: center; margin: 0 auto;">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
+      </div>
+      <h3 style="font-size: 18px; font-weight: 900; margin-top: 10px;">Bem-vindo ao Leilão do Decorado</h3>
+      <p style="font-size: 12px; color: var(--text-muted); margin-top: 6px;">
+        Antes de ofertar lances, consulte as <strong>Regras do Leilão</strong> para verificar detalhes de homologação e prazos de retirada.
+      </p>
+      <div style="display: flex; flex-direction: column; gap: 6px; margin-top: 14px;">
+        <button onclick="openRulesFromNotice()" class="btn btn-primary">Ler Regulamento</button>
+        <button onclick="closeModal('initialNoticeModal')" class="btn btn-outline">Acessar Lotes</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: LOGIN ADMIN (PDV01 / Pdv.miami03) -->
+  <div id="adminLoginModal" class="modal-overlay">
+    <div class="modal-window" style="max-width: 380px;">
+      <div class="modal-header">
+        <div class="modal-title">Acesso Administrativo</div>
+        <button onclick="closeModal('adminLoginModal')" class="modal-close-btn">&times;</button>
+      </div>
+      <form onsubmit="handleAdminLogin(event)" style="display: flex; flex-direction: column; gap: 12px;">
+        <div class="form-group">
+          <label class="form-label">Usuário</label>
+          <input type="text" id="adminUser" required placeholder="PDV01" class="form-input">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Senha</label>
+          <input type="password" id="adminPass" required placeholder="••••••••" class="form-input">
+        </div>
+        <div id="adminLoginErr" style="display: none; color: #dc2626; font-size: 11px; font-weight: 700;">Credenciais incorretas!</div>
+        <div style="display: flex; justify-content: flex-end; gap: 8px; margin-top: 6px;">
+          <button type="button" onclick="closeModal('adminLoginModal')" class="btn btn-outline">Cancelar</button>
+          <button type="submit" class="btn btn-primary">Entrar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- MODAL: DASHBOARD VENCEDORES (6 COLUNAS EXATAS & EXCEL REAL) -->
+  <div id="dashboardModal" class="modal-overlay">
+    <div class="modal-window wide">
+      <div class="modal-header">
+        <div>
+          <div class="modal-title">Painel de Arrematações & Homologação</div>
+          <span style="font-size: 11px; color: var(--text-muted);">Relatório oficial com as 6 colunas do leilão</span>
+        </div>
+        <div style="display: flex; gap: 8px; align-items: center;">
+          <button onclick="exportDashboardToExcelNative()" class="btn btn-success" style="font-size: 11px;">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+            <span>Extrair para Excel</span>
+          </button>
+          <button onclick="closeModal('dashboardModal')" class="modal-close-btn">&times;</button>
+        </div>
+      </div>
+
+      <div class="dashboard-kpis">
+        <div class="dash-kpi-card">
+          <span style="font-size: 10px; font-weight: 800; color: var(--text-light); text-transform: uppercase;">Total de Itens</span>
+          <div id="dashKpiTotal" style="font-size: 18px; font-weight: 900; margin-top: 2px;">21</div>
+        </div>
+        <div class="dash-kpi-card">
+          <span style="font-size: 10px; font-weight: 800; color: var(--text-light); text-transform: uppercase;">Valor Base Total</span>
+          <div id="dashKpiBase" style="font-size: 18px; font-weight: 900; margin-top: 2px;">R$ 2.395,00</div>
+        </div>
+        <div class="dash-kpi-card">
+          <span style="font-size: 10px; font-weight: 800; color: var(--text-light); text-transform: uppercase;">Lances Acumulados</span>
+          <div id="dashKpiLances" style="font-size: 18px; font-weight: 900; color: var(--dubai-red); margin-top: 2px;">R$ 2.395,00</div>
+        </div>
+        <div class="dash-kpi-card">
+          <span style="font-size: 10px; font-weight: 800; color: var(--text-light); text-transform: uppercase;">Itens com Vencedor</span>
+          <div id="dashKpiVencedores" style="font-size: 18px; font-weight: 900; color: #059669; margin-top: 2px;">0 / 21</div>
+        </div>
+      </div>
+
+      <!-- TABELA EXATA DE 6 COLUNAS -->
+      <div class="dash-table-wrapper">
+        <table class="admin-table">
+          <thead>
+            <tr>
+              <th style="text-align: center; width: 70px;">Nº Item</th>
+              <th>Item</th>
+              <th style="text-align: right;">Valor Inicial</th>
+              <th style="text-align: right;">Maior Lance</th>
+              <th>Participante Vencedor</th>
+              <th style="text-align: center;">Encerramento</th>
+            </tr>
+          </thead>
+          <tbody id="dashboardTableBody"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div id="toastContainer" class="toast-container"></div>
+
+  <script>
+    /* BASE DOS 21 ITENS DO ANTIGO DECORADO */
+    const initialDecoradoList = [
+      { id: 1, item: "Jogo americano", valorInicial: 70.00, maiorLance: 70.00, vencedor: "", encerramento: "23/09/2026 15:00", categoria: "Decoração & Tapetes", desc: "Jogo americano de mesa em fibra natural com acabamento reforçado.", img: "https://images.unsplash.com/photo-1617806118233-18e1de247200?auto=format&fit=crop&w=1200&q=80", totalLances: 0, historico: [] },
+      { id: 2, item: "Conjunto masculino", valorInicial: 50.00, maiorLance: 50.00, vencedor: "", encerramento: "23/09/2026 15:00", categoria: "Decoração & Tapetes", desc: "Conjunto decorativo de aromatizadores e bandejas em cerâmica fosca.", img: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=1200&q=80", totalLances: 0, historico: [] },
+      { id: 3, item: "Kit decoração 1", valorInicial: 50.00, maiorLance: 50.00, vencedor: "", encerramento: "23/09/2026 15:00", categoria: "Decoração & Tapetes", desc: "Conjunto com vasos decorativos orgânicos e esculturas de centro.", img: "https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&fit=crop&w=1200&q=80", totalLances: 0, historico: [] },
+      { id: 4, item: "Kit decoração 2", valorInicial: 70.00, maiorLance: 70.00, vencedor: "", encerramento: "23/09/2026 15:00", categoria: "Decoração & Tapetes", desc: "Composição de cachepôs e adornos metálicos na cor dourado escovado.", img: "https://images.unsplash.com/photo-1534349762230-e0cadf78f5da?auto=format&fit=crop&w=1200&q=80", totalLances: 0, historico: [] },
+      { id: 5, item: "Kit de banheiro", valorInicial: 40.00, maiorLance: 40.00, vencedor: "", encerramento: "23/09/2026 15:00", categoria: "Decoração & Tapetes", desc: "Kit lavabo em resina com dispenser, porta-escovas e bandeja.", img: "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=1200&q=80", totalLances: 0, historico: [] },
+      { id: 6, item: "Vaso pendente", valorInicial: 60.00, maiorLance: 60.00, vencedor: "", encerramento: "23/09/2026 15:00", categoria: "Iluminação & Pendentes", desc: "Vaso com suporte em corda náutica e estrutura metálica decorativa.", img: "https://images.unsplash.com/photo-1485955900006-10f4d324d411?auto=format&fit=crop&w=1200&q=80", totalLances: 0, historico: [] },
+      { id: 7, item: "Kit decoração 3", valorInicial: 45.00, maiorLance: 45.00, vencedor: "", encerramento: "23/09/2026 15:00", categoria: "Decoração & Tapetes", desc: "Kit com porta-velas, difusores e livro decorativo de arte moderna.", img: "https://images.unsplash.com/photo-1507473885765-e6ed057f782c?auto=format&fit=crop&w=1200&q=80", totalLances: 0, historico: [] },
+      { id: 8, item: "Cadeiras", valorInicial: 100.00, maiorLance: 100.00, vencedor: "", encerramento: "23/09/2026 15:00", categoria: "Mobiliário & Sofás", desc: "Conjunto de cadeiras de jantar estofadas com pés em madeira maciça.", img: "https://images.unsplash.com/photo-1580481077195-c328ad4f4453?auto=format&fit=crop&w=1200&q=80", totalLances: 0, historico: [] },
+      { id: 9, item: "Livros sebo decorativos", valorInicial: 30.00, maiorLance: 30.00, vencedor: "", encerramento: "23/09/2026 15:00", categoria: "Decoração & Tapetes", desc: "Coleção de livros capa dura decorativos para estantes e mesas de centro.", img: "https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=1200&q=80", totalLances: 0, historico: [] },
+      { id: 10, item: "Folhas de vidro", valorInicial: 100.00, maiorLance: 100.00, vencedor: "", encerramento: "23/09/2026 15:00", categoria: "Mobiliário & Sofás", desc: "Painéis em vidro temperado com suportes para fechamento de nicho.", img: "https://images.unsplash.com/photo-1509644851169-2acc08aa25b5?auto=format&fit=crop&w=1200&q=80", totalLances: 0, historico: [] },
+      { id: 11, item: "Painel ripado", valorInicial: 150.00, maiorLance: 150.00, vencedor: "", encerramento: "23/09/2026 15:00", categoria: "Mobiliário & Sofás", desc: "Painel ripado decorativo em MDF padrão amadeirado carvalho.", img: "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=1200&q=80", totalLances: 0, historico: [] },
+      { id: 12, item: "+ fechadura eletronica e pux", valorInicial: 200.00, maiorLance: 200.00, vencedor: "", encerramento: "23/09/2026 15:00", categoria: "Eletros & Embutidos", desc: "Fechadura digital touch screen biométrica com puxador em inox escovado.", img: "https://images.unsplash.com/photo-1558002038-1055907df827?auto=format&fit=crop&w=1200&q=80", totalLances: 0, historico: [] },
+      { id: 13, item: "Porta com maçaneta comum", valorInicial: 100.00, maiorLance: 100.00, vencedor: "", encerramento: "23/09/2026 15:00", categoria: "Mobiliário & Sofás", desc: "Porta em acabamento padrão construtora com ferragens completas.", img: "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=1200&q=80", totalLances: 0, historico: [] },
+      { id: 14, item: "Manta", valorInicial: 50.00, maiorLance: 50.00, vencedor: "", encerramento: "23/09/2026 15:00", categoria: "Decoração & Tapetes", desc: "Manta decorativa para sofá em algodão trabalhado com franjas.", img: "https://images.unsplash.com/photo-1600121848594-d8644e57abab?auto=format&fit=crop&w=1200&q=80", totalLances: 0, historico: [] },
+      { id: 15, item: "Toalha", valorInicial: 30.00, maiorLance: 30.00, vencedor: "", encerramento: "23/09/2026 15:00", categoria: "Decoração & Tapetes", desc: "Jogo de toalhas de mostruário em fio penteado egípcio.", img: "https://images.unsplash.com/photo-1616627547584-bf28cee262db?auto=format&fit=crop&w=1200&q=80", totalLances: 0, historico: [] },
+      { id: 16, item: "Colchão + box", valorInicial: 250.00, maiorLance: 250.00, vencedor: "", encerramento: "23/09/2026 15:00", categoria: "Mobiliário & Sofás", desc: "Cama box casal com colchão de molas ensacadas individuais.", img: "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=1200&q=80", totalLances: 0, historico: [] },
+      { id: 17, item: "de cozinha, área de serviço +", valorInicial: 350.00, maiorLance: 350.00, vencedor: "", encerramento: "23/09/2026 15:00", categoria: "Mobiliário & Sofás", desc: "Armários planejados em MDF hidrófugo com puxadores e amortecedores.", img: "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=1200&q=80", totalLances: 0, historico: [] },
+      { id: 18, item: "Pendente", valorInicial: 80.00, maiorLance: 80.00, vencedor: "", encerramento: "23/09/2026 15:00", categoria: "Iluminação & Pendentes", desc: "Luminária pendente de design moderno com iluminação LED dimerizável.", img: "https://images.unsplash.com/photo-1507473885765-e6ed057f782c?auto=format&fit=crop&w=1200&q=80", totalLances: 0, historico: [] },
+      { id: 19, item: "Divisoria em marcenaria azul", valorInicial: 250.00, maiorLance: 250.00, vencedor: "", encerramento: "23/09/2026 15:00", categoria: "Mobiliário & Sofás", desc: "Biombo / divisória ripada em laca azul petróleo acetinada.", img: "https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&fit=crop&w=1200&q=80", totalLances: 0, historico: [] },
+      { id: 20, item: "Kit lavabo", valorInicial: 200.00, maiorLance: 200.00, vencedor: "", encerramento: "23/09/2026 15:00", categoria: "Decoração & Tapetes", desc: "Cuba de apoio esculpida em mármore sintético com torneira monocomando.", img: "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=1200&q=80", totalLances: 0, historico: [] },
+      { id: 21, item: "Cortina", valorInicial: 120.00, maiorLance: 120.00, vencedor: "", encerramento: "23/09/2026 15:00", categoria: "Decoração & Tapetes", desc: "Cortina em linho rústico sob medida com blackout embutido.", img: "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=1200&q=80", totalLances: 0, historico: [] }
+    ];
+
+    let items = [];
+    let activeItemId = 1;
+    let isAdmin = false;
+    let pendingBidVal = 0;
+
+    function formatBRL(val) {
+      return Number(val || 0).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+    }
+
+    function showToast(msg, type = 'success') {
+      const container = document.getElementById('toastContainer');
+      const el = document.createElement('div');
+      el.className = `toast-msg ${type}`;
+      el.textContent = msg;
+      container.appendChild(el);
+      setTimeout(() => { el.remove(); }, 3500);
+    }
+
+    function openModal(id) {
+      const el = document.getElementById(id);
+      if (el) el.classList.add('open');
+    }
+
+    function closeModal(id) {
+      const el = document.getElementById(id);
+      if (el) el.classList.remove('open');
+    }
+
+    function toggleAppTheme() {
+      const isDark = document.body.getAttribute('data-theme') === 'dark';
+      if (isDark) {
+        document.body.removeAttribute('data-theme');
+        try { localStorage.setItem('dubai_theme', 'light'); } catch(e){}
+      } else {
+        document.body.setAttribute('data-theme', 'dark');
+        try { localStorage.setItem('dubai_theme', 'dark'); } catch(e){}
+      }
+    }
+
+    function openRulesModal() { openModal('rulesModal'); }
+    function openRulesFromNotice() {
+      closeModal('initialNoticeModal');
+      openModal('rulesModal');
+    }
+
+    function openAdminAuth() {
+      if (isAdmin) {
+        openDashboardModal();
+      } else {
+        openModal('adminLoginModal');
+      }
+    }
+
+    function handleAdminLogin(e) {
+      e.preventDefault();
+      const u = document.getElementById('adminUser').value.trim();
+      const p = document.getElementById('adminPass').value.trim();
+
+      if (u === 'PDV01' && p === 'Pdv.miami03') {
+        isAdmin = true;
+        document.getElementById('adminToolbar').style.display = 'block';
+        document.getElementById('adminLoginBtnLabel').textContent = 'Admin: PDV01';
+        closeModal('adminLoginModal');
+        showToast('Login de administrador realizado com sucesso!');
+        openDashboardModal();
+      } else {
+        document.getElementById('adminLoginErr').style.display = 'block';
+      }
+    }
+
+    function logoutAdmin() {
+      isAdmin = false;
+      document.getElementById('adminToolbar').style.display = 'none';
+      document.getElementById('adminLoginBtnLabel').textContent = 'Painel Admin';
+      showToast('Sessão admin finalizada.');
+    }
+
+    /* SPOTLIGHT & LANCES */
+    function selectItemSpotlight(id) {
+      const it = items.find(i => i.id === id);
+      if (!it) return;
+      activeItemId = it.id;
+
+      document.getElementById('spotlightCode').textContent = `LOTE #${String(it.id).padStart(2, '0')}`;
+      document.getElementById('spotlightCategory').textContent = it.categoria;
+      document.getElementById('spotlightTitle').textContent = it.item;
+      document.getElementById('spotlightDesc').textContent = it.desc;
+      document.getElementById('spotlightImg').src = it.img;
+      document.getElementById('spotlightCurrentPrice').textContent = formatBRL(it.maiorLance);
+      document.getElementById('spotlightBidsCount').textContent = it.totalLances || 0;
+      document.getElementById('spotlightLeaderDept').textContent = it.vencedor ? `Líder: ${it.vencedor}` : 'Sem lances';
+      document.getElementById('spotlightEndTime').textContent = it.encerramento;
+
+      const minVal = it.maiorLance + 10;
+      const input = document.getElementById('customBidInput');
+      input.value = minVal;
+      input.min = 10;
+      document.getElementById('minBidNotice').textContent = `Lance mínimo: ${formatBRL(minVal)} (+R$ 10,00 sobre o líder)`;
+
+      const hist = document.getElementById('bidHistoryList');
+      hist.innerHTML = '';
+      if (!it.historico || it.historico.length === 0) {
+        hist.innerHTML = '<div style="font-size: 11px; color: var(--text-light); font-style: italic;">Nenhum lance no momento. Seja o primeiro!</div>';
+      } else {
+        it.historico.slice(0, 4).forEach((h, idx) => {
+          const div = document.createElement('div');
+          div.className = `bid-history-item ${idx === 0 ? 'leader' : ''}`;
+          div.innerHTML = `<span>${h.nome} (${h.area})</span><strong>${formatBRL(h.valor)}</strong>`;
+          hist.appendChild(div);
+        });
+      }
+
+      renderCatalog();
+    }
+
+    function triggerQuickAdd(addVal) {
+      const it = items.find(i => i.id === activeItemId);
+      if (!it) return;
+      promptBid(it.maiorLance + Math.max(10, addVal));
+    }
+
+    function submitCustomBid() {
+      const it = items.find(i => i.id === activeItemId);
+      if (!it) return;
+      const val = Number(document.getElementById('customBidInput').value);
+
+      if (!val || val < 10) {
+        showToast('Lance mínimo a partir de R$ 10,00', 'error');
+        return;
+      }
+
+      let finalVal = val;
+      if (val < it.maiorLance + 10) {
+        finalVal = it.maiorLance + val;
+      }
+
+      promptBid(finalVal);
+    }
+
+    function promptBid(val) {
+      const it = items.find(i => i.id === activeItemId);
+      if (!it) return;
+
+      const minRequired = it.maiorLance + 10;
+      if (val < minRequired) {
+        val = minRequired;
+      }
+
+      pendingBidVal = val;
+      document.getElementById('bidModalSubtitle').textContent = `Lote #${String(it.id).padStart(2, '0')}: ${it.item}`;
+      document.getElementById('bidModalDisplayPrice').textContent = formatBRL(pendingBidVal);
+
+      try {
+        const saved = JSON.parse(localStorage.getItem('dubai_bidder_profile') || '{}');
+        if (saved.nome) document.getElementById('bidderName').value = saved.nome;
+        if (saved.area) document.getElementById('bidderArea').value = saved.area;
+        if (saved.tel) document.getElementById('bidderPhone').value = saved.tel;
+      } catch(e){}
+
+      openModal('bidderModal');
+    }
+
+    function maskPhone(input) {
+      let v = input.value.replace(/\D/g, '');
+      if (v.length > 11) v = v.substring(0, 11);
+      if (v.length > 10) {
+        input.value = v.replace(/^(\d{2})(\d{5})(\d{4})$/, '($1) $2-$3');
+      } else if (v.length > 5) {
+        input.value = v.replace(/^(\d{2})(\d{4})(\d{0,4})$/, '($1) $2-$3');
+      } else if (v.length > 2) {
+        input.value = v.replace(/^(\d{2})(\d{0,5})$/, '($1) $2');
+      } else {
+        input.value = v;
+      }
+    }
+
+    function handleConfirmBidForm(e) {
+      e.preventDefault();
+      const nome = document.getElementById('bidderName').value.trim();
+      const area = document.getElementById('bidderArea').value.trim();
+      const tel = document.getElementById('bidderPhone').value.trim();
+
+      if (!nome || !area || !tel) {
+        showToast('Preencha todos os campos obrigatórios!', 'error');
+        return;
+      }
+
+      const it = items.find(i => i.id === activeItemId);
+      if (!it) return;
+
+      it.maiorLance = pendingBidVal;
+      it.vencedor = `${nome} (${area})`;
+      it.totalLances = (it.totalLances || 0) + 1;
+      if (!it.historico) it.historico = [];
+      it.historico.unshift({ nome, area, tel, valor: pendingBidVal, data: new Date().toLocaleTimeString('pt-BR') });
+
+      try {
+        localStorage.setItem('dubai_bidder_profile', JSON.stringify({ nome, area, tel }));
+        localStorage.setItem('dubai_items_data', JSON.stringify(items));
+      } catch(e){}
+
+      closeModal('bidderModal');
+      selectItemSpotlight(it.id);
+      showToast(`Parabéns, ${nome}! Seu lance de ${formatBRL(pendingBidVal)} foi registrado.`);
+    }
+
+    /* RENDERIZAÇÃO DO CATÁLOGO */
+    function renderCatalog() {
+      const grid = document.getElementById('catalogGrid');
+      const search = (document.getElementById('catalogSearch')?.value || '').toLowerCase();
+      grid.innerHTML = '';
+
+      const filtered = items.filter(i => 
+        i.item.toLowerCase().includes(search) || 
+        i.id.toString().includes(search)
+      );
+
+      document.getElementById('catalogCountPill').textContent = `${filtered.length} itens`;
+
+      filtered.forEach(it => {
+        const isSelected = it.id === activeItemId;
+        const card = document.createElement('div');
+        card.className = `lot-card ${isSelected ? 'active-selected' : ''}`;
+        card.onclick = () => {
+          selectItemSpotlight(it.id);
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        };
+
+        card.innerHTML = `
+          <div>
+            <div class="lot-card-media">
+              <img src="${it.img}" alt="${it.item}" class="lot-card-img" onerror="this.src='https://images.unsplash.com/photo-1617806118233-18e1de247200?auto=format&fit=crop&w=1200&q=80'">
+              <div class="lot-card-header">
+                <span class="lot-card-badge">AO VIVO</span>
+                <span class="lot-card-code">#${String(it.id).padStart(2, '0')}</span>
+              </div>
+            </div>
+            <div class="lot-card-title">${it.item}</div>
+            <div class="lot-card-desc">${it.desc}</div>
+          </div>
+          <div class="lot-card-footer">
+            <div>
+              <span class="lot-card-price-label">Maior Lance</span>
+              <div class="lot-card-price">${formatBRL(it.maiorLance)}</div>
+            </div>
+            <button class="btn btn-outline" style="padding: 4px 10px; font-size: 11px;">Ofertar</button>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+    }
+
+    /* DASHBOARD ADMIN & EXPORTAÇÃO EXCEL NATIVA (SEM DEPENDÊNCIAS EXTERNAS) */
+    function openDashboardModal() {
+      const tbody = document.getElementById('dashboardTableBody');
+      tbody.innerHTML = '';
+
+      let baseTotal = 0;
+      let lancesTotal = 0;
+      let comVencedor = 0;
+
+      items.forEach(it => {
+        baseTotal += it.valorInicial;
+        lancesTotal += it.maiorLance;
+        if (it.vencedor) comVencedor++;
+
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td style="text-align: center; font-weight: 800;">${it.id}</td>
+          <td style="font-weight: 700;">${it.item}</td>
+          <td style="text-align: right; color: var(--text-muted);">${formatBRL(it.valorInicial)}</td>
+          <td style="text-align: right; font-weight: 900; color: var(--dubai-red);">${formatBRL(it.maiorLance)}</td>
+          <td>${it.vencedor ? `<strong style="color: #059669;">${it.vencedor}</strong>` : `<span style="color: var(--text-light); font-style: italic;">Sem lances</span>`}</td>
+          <td style="text-align: center; font-family: monospace; font-size: 10px;">${it.encerramento}</td>
+        `;
+        tbody.appendChild(tr);
+      });
+
+      document.getElementById('dashKpiTotal').textContent = items.length;
+      document.getElementById('dashKpiBase').textContent = formatBRL(baseTotal);
+      document.getElementById('dashKpiLances').textContent = formatBRL(lancesTotal);
+      document.getElementById('dashKpiVencedores').textContent = `${comVencedor} / ${items.length}`;
+
+      openModal('dashboardModal');
+    }
+
+    function exportDashboardToExcelNative() {
+      // Criação de CSV compatível com Excel usando UTF-8 BOM e delimitador ; (padrão brasileiro)
+      const headers = ["Nº Item", "Item", "Valor Inicial", "Maior Lance", "Participante Vencedor", "Encerramento"];
+      let csvContent = "\uFEFF"; // Byte Order Mark para acentuação correta no Excel
+      csvContent += headers.join(";") + "\r\n";
+
+      items.forEach(i => {
+        const row = [
+          i.id,
+          `"${i.item.replace(/"/g, '""')}"`,
+          `"${formatBRL(i.valorInicial)}"`,
+          `"${formatBRL(i.maiorLance)}"`,
+          `"${(i.vencedor || 'Sem lances').replace(/"/g, '""')}"`,
+          `"${i.encerramento}"`
+        ];
+        csvContent += row.join(";") + "\r\n";
+      });
+
+      const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+      const link = document.createElement("a");
+      const url = URL.createObjectURL(blob);
+      link.setAttribute("href", url);
+      link.setAttribute("download", `Relatorio_Leilao_Decorado_Dubai_${new Date().toISOString().slice(0,10)}.csv`);
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      showToast('Planilha Excel (.csv formatado) baixada!');
+    }
+
+    /* INICIALIZAÇÃO */
+    window.addEventListener('DOMContentLoaded', () => {
+      try {
+        const saved = localStorage.getItem('dubai_items_data');
+        if (saved) {
+          items = JSON.parse(saved);
+        } else {
+          items = [...initialDecoradoList];
+        }
+
+        const theme = localStorage.getItem('dubai_theme');
+        if (theme === 'dark') {
+          document.body.setAttribute('data-theme', 'dark');
+        }
+
+        if (!sessionStorage.getItem('dubai_notice_seen')) {
+          openModal('initialNoticeModal');
+          sessionStorage.setItem('dubai_notice_seen', 'true');
+        }
+      } catch(e) {
+        items = [...initialDecoradoList];
+      }
+
+      selectItemSpotlight(1);
+      renderCatalog();
+    });
+  </script>
+</body>
+</html>
